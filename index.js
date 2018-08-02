@@ -1,3 +1,3 @@
 import { AppRegistry } from 'react-native';
-import App from './App';
-AppRegistry.registerComponent('braininjury', () => App);
+import {App, GameGrid} from './App';
+AppRegistry.registerComponent('braininjury', () => GameGrid);

@@ -57,6 +57,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/stephenflorian/workspace/brain-games/android/app/build/intermediates/exploded-aar/braininjury/react-native-svg/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a47939101f2d044583f8be5d0608f5a98e8f3502">
+        <dex dex="/Users/stephenflorian/workspace/brain-games/android/app/build/intermediates/pre-dexed/debug/braininjury-react-native-svg-unspecified_a64adcbe08ad2ce3c6bbd0a9f9d2be635061cdb6.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/stephenflorian/workspace/brain-games/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"

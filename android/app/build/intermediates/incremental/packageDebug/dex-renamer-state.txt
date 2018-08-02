@@ -1,4 +1,4 @@
-#Thu Aug 02 13:44:08 MDT 2018
+#Thu Aug 02 15:49:07 MDT 2018
 base.0=/Users/stephenflorian/workspace/brain-games/android/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
 renamed.0=classes.dex
 file.0=/Users/stephenflorian/workspace/brain-games/android/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex
