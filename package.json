@@ -18,6 +18,8 @@
     "preset": "react-native"
   },
   "dependencies": {
+    "lodash.shuffle": "^4.2.0",
+    "npm": "^6.3.0",
     "react": "16.3.1",
     "react-native": "~0.55.2",
     "react-native-super-grid": "^2.4.3",
