@@ -7,6 +7,8 @@ import {
   StyleSheet
 } from 'react-native'
 
+import Tts from 'react-native-tts'
+
 import Svg, { Path } from 'react-native-svg'
 
 // import styles from './InstructionsStyles'
