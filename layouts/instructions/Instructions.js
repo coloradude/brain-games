@@ -11,7 +11,29 @@ import Tts from 'react-native-tts'
 
 import Svg, { Path } from 'react-native-svg'
 
-import styles from './InstructionsStyles'
+// import styles from './InstructionsStyles'
+
+const styles =  StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#90caf9',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  iconContainer: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  instructions: {
+    width: 350,
+    textAlign: 'center',
+    fontSize: 25
+  },
+  instructionsHeader: {
+    fontSize: 35,
+    fontWeight: 'bold'
+  },
+})
 
 export default class Instructions extends React.Component {
 

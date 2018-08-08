@@ -8,62 +8,25 @@ import {
 
 import Modal from 'react-native-modal'
 
-import Svg, { Path } from 'react-native-svg'
 import {
-  checkCircle,
-  timesCircle
-} from '../../svg/icons'
+  generateUniqueLetterArray,
+  generateRandomActiveLetter,
+  generateRandomRotation,
+  generateUniqueBackgroundColorArray
+} from './utilities'
+
+import {
+  letters,
+  rotations,
+  colors,
+  numberOfMovesPerGame
+} from './staticVariables'
+
+import { 
+  AnswerModal
+} from './components'
 
 import styles from './RotatingLettersStyles'
-
-import shuffle from 'lodash.shuffle'
-
-const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-const rotations = ['90deg', '180deg', '270deg']
-const colors = ['#90caf9', '#80cbc4', '#b39ddb', '#ffcdd2', '#c8e6c9', '#ffccbc', '#fff9c4']
-const numberOfMovesPerGame = 3
-
-
-const SvgGenerator = params => (
-  <Svg width='90' height='90' viewBox={params.viewBox}>
-    <Path 
-      d={params.d}
-      fill={params.fill}
-      stroke={params.stroke}
-    />
-  </Svg>
-)
-
-const generateUniqueLetterArray = activeLetter => {
-  const uniques = []
-  while (uniques.length < 3){
-    const randomNum = Math.floor(Math.random() * 25)
-    if (!uniques.includes(randomNum) && randomNum !== activeLetter){
-      uniques.push(randomNum)
-    }
-  }
-
-  return shuffle([activeLetter, ...uniques])
-}
-
-const generateUniqueBackgroundColorArray = () => {
-  const colors = []
-  while (colors.length < 5) {
-    const randomNum = Math.floor(Math.random() * 7)
-    if (!colors.includes(randomNum)){
-      colors.push(randomNum)
-    }
-  }
-  return colors
-}
-
-const generateRandomActiveLetter = () => {
-  return Math.floor(Math.random() * 25)
-}
-
-const generateRandomRotation = () => {
-  return Math.floor(Math.random() * 3)
-}
 
 export default class RotatingLetters extends React.Component {
 
@@ -156,6 +119,7 @@ export default class RotatingLetters extends React.Component {
           animationOut='slideOutUp'
           isVisible={true}
           style={styles.modal}
+          onBackButtonPress={() => this.props.navigation.navigate('GameGrid')}
         >
           <View style={styles.modalBackground}>
             <Text>{`You got ${this.state.score}/${numberOfMovesPerGame} answers correct`}</Text>
@@ -164,22 +128,13 @@ export default class RotatingLetters extends React.Component {
           </View>
         </Modal>}
 
-        <Modal
-          animationIn='slideInUp'
-          animationOut='slideOutUp'
-          isVisible={this.state.isModalVisible}
-          style={styles.modal}
-          onBackdropPress={this.refreshGameBoard}
-          onBackButtonPress={this.refreshGameBoard}
-        >
-          <View style={styles.modalBackground}>
-            {this.state.correctAnswer ? SvgGenerator(checkCircle) : SvgGenerator(timesCircle)}
-            <Text style={styles.modalText}>{this.state.correctAnswer ? 'Good job, you selected the right answer!' : 'Better luck next time bucko'}</Text>
-            <TouchableOpacity style={styles.nextButton} onPress={this.state.timesPlayed < numberOfMovesPerGame ? this.refreshGameBoard : this.endGame}>
-              <Text style={styles.nextButtonText}>Next</Text>
-            </TouchableOpacity>
-          </View>
-        </Modal>
+        <AnswerModal 
+          isModalVisible={this.state.isModalVisible} 
+          correctAnswer={this.state.correctAnswer}
+          timesPlayed={this.state.timesPlayed}
+          refreshGameBoard={this.refreshGameBoard}
+          endGame={this.endGame}
+        />
 
         <View style={[styles.rotatingLetterBox, {
           transform: [{
