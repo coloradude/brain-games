@@ -6,6 +6,8 @@ import {
   BackHandler
 } from 'react-native'
 
+import styles from './EndGameScreenStyles'
+
 export default class EndGameScreen extends React.Component {
 
   static navigationOptions = {
@@ -39,8 +41,32 @@ export default class EndGameScreen extends React.Component {
     const navParams = this.props.navigation.state.params
 
     return (
-      <View>
-        <Text>{`Score: ${navParams.score}`}</Text>
+      <View style={styles.container}>
+        <Text style={styles.heading}>{`Score: ${navParams.score}`}</Text>
+        <TouchableOpacity
+          // style={}
+          // onPress={}
+        >
+          <View style={styles.endGameButton}>
+            <Text style={styles.endGameButtonText}>Submit Score</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          // style={}
+          // onPress={}
+        >
+          <View style={styles.endGameButton}>
+            <Text style={styles.endGameButtonText}>Play Again</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          // style={}
+          // onPress={}
+        >
+          <View style={styles.endGameButton}>
+            <Text style={styles.endGameButtonText}>Back To Game Menu</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     )
   }
