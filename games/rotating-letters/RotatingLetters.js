@@ -95,35 +95,20 @@ export default class RotatingLetters extends React.Component {
   }
 
   handleAnswer = answer => {
-
     if (answer){
       this.setState({
         score: this.state.score + 1,
         timesPlayed: this.state.timesPlayed + 1,
-        isModalVisible: true
+        isModalVisible: true,
+        correctAnswer: true,
       })
     } else {
       this.setState({
         timesPlayed: this.state.timesPlayed + 1,
-        isModalVisible: true
+        isModalVisible: true,
+        correctAnswer: false,
       })
     }
-    // } else if (answer && this.state.timesPlayed < numberOfMovesPerGame){
-    //   console.log('c')
-    //   this.setState({
-    //     isModalVisible: true,
-    //     correctAnswer: true,
-    //     score: this.state.score + 1,
-    //     timesPlayed: this.state.timesPlayed + 1
-    //   })
-    // } else if (!answer && this.state.timesPlayed < numberOfMovesPerGame){
-    //   console.log('d')
-    //   this.setState({
-    //     isModalVisible: true,
-    //     correctAnswer: false,
-    //     timesPlayed: this.state.timesPlayed + 1
-    //   })
-    // }
   }
 
   refreshGameBoard = () => {

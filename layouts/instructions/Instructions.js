@@ -11,31 +11,14 @@ import Tts from 'react-native-tts'
 
 import Svg, { Path } from 'react-native-svg'
 
-// import styles from './InstructionsStyles'
-
-const styles =  StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#90caf9',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  iconContainer: {
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  instructions: {
-    width: 350,
-    textAlign: 'center',
-    fontSize: 25
-  },
-  instructionsHeader: {
-    fontSize: 35,
-    fontWeight: 'bold'
-  },
-})
+import styles from './InstructionsStyles'
 
 export default class Instructions extends React.Component {
+
+  // this is wrong context apparently
+  // static navigationOptions = {
+  //   title: this.props.navigation.state.params.gameName
+  // }
 
   render () {
 
