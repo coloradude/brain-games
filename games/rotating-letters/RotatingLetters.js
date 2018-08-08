@@ -134,7 +134,7 @@ export default class RotatingLetters extends React.Component {
           refreshGameBoard={this.refreshGameBoard}
           endGame={() => {
             this.setModalVisible(false)
-            this.props.navigation.navigate('EndGameScreen')
+            this.props.navigation.navigate('EndGameScreen', {...this.state})
           }}
         />
 

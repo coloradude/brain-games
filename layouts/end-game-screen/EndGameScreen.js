@@ -17,7 +17,7 @@ export default class EndGameScreen extends React.Component {
     super(props)
 
     this.state = {
-      a: 'b'
+
     }
   }
 
@@ -35,9 +35,12 @@ export default class EndGameScreen extends React.Component {
   }
 
   render(){
+
+    const navParams = this.props.navigation.state.params
+
     return (
       <View>
-        <Text>Hello World</Text>
+        <Text>{`Score: ${navParams.score}`}</Text>
       </View>
     )
   }
