@@ -9,6 +9,10 @@ import {
 import Modal from 'react-native-modal'
 
 import Svg, { Path } from 'react-native-svg'
+import {
+  checkCircle,
+  timesCircle
+} from '../../svg/icons'
 
 import styles from './RotatingLettersStyles'
 
@@ -18,19 +22,6 @@ const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'
 const rotations = ['90deg', '180deg', '270deg']
 const colors = ['#90caf9', '#80cbc4', '#b39ddb', '#ffcdd2', '#c8e6c9', '#ffccbc', '#fff9c4']
 
-const checkCircle = {
-  viewBox: '0 0 512 512',
-  d: 'M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z',
-  stroke: '#c5e1a5',
-  fill: '#c5e1a5'
-}
-
-const timesCircle = {
-  viewBox: '0 0 512 512',
-  d: 'M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z',
-  stroke: '#f48fb1',
-  fill: '#f48fb1'
-}
 
 const SvgGenerator = params => (
   <Svg width='90' height='90' viewBox={params.viewBox}>
@@ -169,8 +160,10 @@ export default class RotatingLetters extends React.Component {
         >
           <View style={styles.modalBackground}>
             {this.state.correctAnswer ? SvgGenerator(checkCircle) : SvgGenerator(timesCircle)}
-            <Text>{this.state.correctAnswer ? 'Good job, you selected the right answer!' : 'Better luck next time bucko'}</Text>
-            <Button title='Next' onPress={this.refreshGameBoard}/>
+            <Text style={styles.modalText}>{this.state.correctAnswer ? 'Good job, you selected the right answer!' : 'Better luck next time bucko'}</Text>
+            <TouchableOpacity style={styles.nextButton} onPress={this.refreshGameBoard}>
+              <Text style={styles.nextButtonText}>Next</Text>
+            </TouchableOpacity>
           </View>
         </Modal>
 
