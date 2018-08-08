@@ -42,9 +42,8 @@ export default class EndGameScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.heading}>{`Score: ${navParams.score}`}</Text>
+        <Text style={styles.heading}>{`Score: ${navParams.score}/${navParams.numberOfMovesPerGame}`}</Text>
         <TouchableOpacity
-          // style={}
           // onPress={}
         >
           <View style={styles.endGameButton}>
@@ -52,7 +51,6 @@ export default class EndGameScreen extends React.Component {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          // style={}
           // onPress={}
         >
           <View style={styles.endGameButton}>
@@ -60,7 +58,6 @@ export default class EndGameScreen extends React.Component {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          // style={}
           // onPress={}
         >
           <View style={styles.endGameButton}>

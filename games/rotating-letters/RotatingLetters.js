@@ -46,6 +46,7 @@ export default class RotatingLetters extends React.Component {
       rotation: generateRandomRotation(),
       score: 0,
       timesPlayed: 0,
+      numberOfMovesPerGame,
       isModalVisible: false,
       correctAnswer: false,
       endGame: false,
@@ -111,21 +112,6 @@ export default class RotatingLetters extends React.Component {
       <View style={styles.rotatingLettersContainer}>
 
         <Text>{`Score: ${this.state.score}/${numberOfMovesPerGame}`}</Text>
-
-        {this.state.endGame && 
-        <Modal
-          animationIn='slideInUp'
-          animationOut='slideOutUp'
-          isVisible={true}
-          style={styles.modal}
-          onBackButtonPress={() => this.props.navigation.navigate('GameGrid')}
-        >
-          <View style={styles.modalBackground}>
-            <Text>{`You got ${this.state.score}/${numberOfMovesPerGame} answers correct`}</Text>
-            <TouchableOpacity onPress={this.restartGame}><Text>Play Again</Text></TouchableOpacity>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('GameGrid')}><Text>Back To Game Menu</Text></TouchableOpacity>
-          </View>
-        </Modal>}
 
         <AnswerModal 
           isModalVisible={this.state.isModalVisible} 

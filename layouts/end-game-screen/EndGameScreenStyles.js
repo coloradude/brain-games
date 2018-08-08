@@ -12,7 +12,7 @@ export default StyleSheet.create({
     fontWeight: 'bold'
   },
   endGameButton: {
-    width: 200,
+    width: 250,
     height: 75,
     backgroundColor: '#81d4fa',
     justifyContent: 'center',
