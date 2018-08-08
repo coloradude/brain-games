@@ -95,22 +95,27 @@ export default class RotatingLetters extends React.Component {
   handleAnswer = answer => {
 
     if (this.state.timesPlayed === 9 && answer){
+      console.log('a')
       this.setState({
         score: this.state.score + 1,
-        timesPlayed: this.state.timesPlayed + 1
+        timesPlayed: this.state.timesPlayed + 1,
+        isModalVisible: false
       })
     } else if (this.state.timesPlayed === 9 && !answer){
+      console.log('b')
       this.setState({
         timesPlayed: this.state.timesPlayed + 1
       })
-    } else if (answer){
+    } else if (answer && this.state.timesPlayed < 9){
+      console.log('c')
       this.setState({
         isModalVisible: true,
         correctAnswer: true,
         score: this.state.score + 1,
         timesPlayed: this.state.timesPlayed + 1
       })
-    } else {
+    } else if (!answer && this.state.timesPlayed < 9){
+      console.log('d')
       this.setState({
         isModalVisible: true,
         correctAnswer: false,
@@ -130,6 +135,20 @@ export default class RotatingLetters extends React.Component {
     })
   }
 
+  restartGame = () => {
+    const activeLetter = generateRandomActiveLetter()
+    this.setState({
+      activeLetter,
+      letterList: generateUniqueLetterArray(activeLetter),
+      colorList: generateUniqueBackgroundColorArray(),
+      rotation: generateRandomRotation(),
+      isModalVisible: false,
+      score: 0,
+      timesPlayed: 0,
+      correctAnswer: false
+    })
+  }
+
   render() {
     return (
       <View style={styles.rotatingLettersContainer}>
@@ -145,8 +164,8 @@ export default class RotatingLetters extends React.Component {
         >
           <View style={styles.modalBackground}>
             <Text>{`You got ${this.state.score}/10 answers correct`}</Text>
-            <Button title='Play Again' onPress={this.props.navigation.navigate('GameGrid')}/>
-            <Button title='Back to Main Menu' onPress={this.props.navigation.navigate('GameGrid')}/>
+            <TouchableOpacity onPress={this.restartGame}><Text>Play Again</Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('GameGrid')}><Text>Back To Game Menu</Text></TouchableOpacity>
           </View>
         </Modal>}
 
