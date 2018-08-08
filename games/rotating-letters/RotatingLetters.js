@@ -65,6 +65,7 @@ export default class RotatingLetters extends React.Component {
       colorList: generateUniqueBackgroundColorArray(),
       rotation: generateRandomRotation(),
       score: 0,
+      timesPlayed: 0,
       isModalVisible: false,
       correctAnswer: false,
     }
@@ -74,18 +75,21 @@ export default class RotatingLetters extends React.Component {
     this.setState({isModalVisible})
   }
 
-  gotAnswerCorrect = () => {
-    this.setState({
-      isModalVisible: true,
-      correctAnswer: true
-    })
-  }
-
-  gotAnswerWrong = () => {
-    this.setState({
-      isModalVisible: true,
-      correctAnswer: false
-    })
+  handleAnswer = answer => {
+    if (answer){
+      this.setState({
+        isModalVisible: true,
+        correctAnswer: true,
+        score: this.state.score + 1,
+        timesPlayed: this.state.timesPlayed + 1
+      })
+    } else {
+      this.setState({
+        isModalVisible: true,
+        correctAnswer: false,
+        timesPlayed: this.state.timesPlayed + 1
+      })
+    }
   }
 
   refreshGameBoard = () => {
@@ -95,7 +99,6 @@ export default class RotatingLetters extends React.Component {
       letterList: generateUniqueLetterArray(activeLetter),
       colorList: generateUniqueBackgroundColorArray(),
       rotation: generateRandomRotation(),
-      score: 0,
       isModalVisible: false,
     })
   }
@@ -103,6 +106,20 @@ export default class RotatingLetters extends React.Component {
   render() {
     return (
       <View style={styles.rotatingLettersContainer}>
+
+        <Text>{`Score: ${this.state.score}/10`}</Text>
+
+        {this.state.timesPlayed === 10 && 
+        <Modal
+          animationIn='slideInUp'
+          animationOut='slideOutUp'
+          isVisible={true}
+          style={styles.modal}
+        >
+          <View style={styles.modalBackground}>
+            <Text>{`You got ${this.state.score}/10 answers correct`}</Text>
+          </View>
+        </Modal>}
 
         <Modal
           animationIn='slideInUp'
@@ -128,14 +145,7 @@ export default class RotatingLetters extends React.Component {
 
 
           return (
-            <TouchableOpacity onPress={() => {
-              if (num === this.state.activeLetter){
-                console.log(num, this.state.activeLetter)
-                this.gotAnswerCorrect()
-              } else {
-                this.gotAnswerWrong()
-              }
-            }} key={i}>
+            <TouchableOpacity onPress={() => this.handleAnswer(num === this.state.activeLetter)} key={i}>
               <View  style={[styles.letterBtn, {backgroundColor: colors[this.state.colorList[i]]}]}>
                 <Text style={styles.gameLetter}>{letters[num]}</Text>
               </View>
