@@ -33,8 +33,6 @@ export const AnswerModal = ({
   endGame,
   timesPlayed
 }) => {
-
-  console.log(styles)
   return (
     <Modal
       animationIn='slideInUp'

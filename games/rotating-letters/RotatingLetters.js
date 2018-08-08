@@ -1,8 +1,7 @@
 import React from 'react'
 import { 
   Text, 
-  View , 
-  Button,
+  View,
   TouchableOpacity,
 } from 'react-native'
 
@@ -133,7 +132,11 @@ export default class RotatingLetters extends React.Component {
           correctAnswer={this.state.correctAnswer}
           timesPlayed={this.state.timesPlayed}
           refreshGameBoard={this.refreshGameBoard}
-          endGame={this.endGame}
+          // endGame={this.endGame}
+          endGame={() => {
+            this.setModalVisible(false)
+            this.props.navigation.navigate('EndGameScreen')
+          }}
         />
 
         <View style={[styles.rotatingLetterBox, {
