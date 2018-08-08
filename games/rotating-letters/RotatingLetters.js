@@ -4,56 +4,48 @@ import {
   View , 
   Button,
   TouchableOpacity,
-  StyleSheet
 } from 'react-native'
 
 import Modal from 'react-native-modal'
 
-// import styles from './RotatingLettersStyles'
+import styles from './RotatingLettersStyles'
 
 import shuffle from 'lodash.shuffle'
-
-const styles = StyleSheet.create({
-  rotateLetterMain: {
-    fontSize: 250
-  },
-  letterRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignSelf: 'stretch'
-  },
-  rotateLettersContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  rotatingLetterBox: {
-    alignItems: 'center'
-  },
-  letterBtn: {
-    width: 60,
-    height: 60,
-    alignItems: 'center',
-    backgroundColor: 'blue',
-    borderRadius: 5
-  },
-  gameLetter: {
-    fontSize: 40
-  },
-  modal: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalBackground: {
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})
 
 const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 const rotations = ['90deg', '180deg', '270deg']
 const colors = ['#90caf9', '#80cbc4', '#b39ddb', '#ffcdd2', '#c8e6c9', '#ffccbc', '#fff9c4']
+
+const generateUniqueLetterArray = activeLetter => {
+  const uniques = []
+  while (uniques.length < 3){
+    const randomNum = Math.floor(Math.random() * 25)
+    if (!uniques.includes(randomNum) && randomNum !== activeLetter){
+      uniques.push(randomNum)
+    }
+  }
+
+  return shuffle([activeLetter, ...uniques])
+}
+
+const generateUniqueBackgroundColorArray = () => {
+  const colors = []
+  while (colors.length < 5) {
+    const randomNum = Math.floor(Math.random() * 7)
+    if (!colors.includes(randomNum)){
+      colors.push(randomNum)
+    }
+  }
+  return colors
+}
+
+const generateRandomActiveLetter = () => {
+  return Math.floor(Math.random() * 25)
+}
+
+const generateRandomRotation = () => {
+  return Math.floor(Math.random() * 3)
+}
 
 export default class RotatingLetters extends React.Component {
 
@@ -65,113 +57,92 @@ export default class RotatingLetters extends React.Component {
   constructor(props){
     super(props)
 
-    const activeLetter = this.generateRandomActiveLetter()
+    const activeLetter = generateRandomActiveLetter()
 
     this.state = {
       activeLetter,
-      letterList: this.generateUniqueLetterArray(activeLetter),
-      colorList: this.generateUniqueBackgroundColorArray(),
-      rotation: this.generateRandomRotation(),
+      letterList: generateUniqueLetterArray(activeLetter),
+      colorList: generateUniqueBackgroundColorArray(),
+      rotation: generateRandomRotation(),
       score: 0,
       isModalVisible: false,
       correctAnswer: false,
     }
   }
 
-  // componentWillMount(){
-    
-  //   this.setState({
-  //     activeLetter,
-  //     letterList: this.generateUniqueLetterArray(activeLetter),
-  //     colorList: this.generateUniqueBackgroundColorArray(),
-  //     rotation: this.generateRandomRotation()
-  //   })
-  // }
-
-  setModalVisible(visible){
-    this.setState({isModalVisible: visible})
+  setModalVisible = isModalVisible => {
+    this.setState({isModalVisible})
   }
 
-  generateUniqueLetterArray = (activeLetter) => {
-    const uniques = []
-    while (uniques.length < 3){
-      const randomNum = Math.floor(Math.random() * 25)
-      if (!uniques.includes(randomNum) && randomNum !== activeLetter){
-        uniques.push(randomNum)
-      }
-    }
-
-    console.log('yo')
-
-    console.log(activeLetter, uniques, 'here')
-
-    return shuffle([activeLetter, ...uniques])
+  gotAnswerCorrect = () => {
+    this.setState({
+      isModalVisible: true,
+      correctAnswer: true
+    })
   }
 
-  generateUniqueBackgroundColorArray = () => {
-    const colors = []
-    while (colors.length < 5) {
-      const randomNum = Math.floor(Math.random() * 7)
-      if (!colors.includes(randomNum)){
-        colors.push(randomNum)
-      }
-    }
-    return colors
+  gotAnswerWrong = () => {
+    this.setState({
+      isModalVisible: true,
+      correctAnswer: false
+    })
   }
 
-  generateRandomActiveLetter = () => {
-    return Math.floor(Math.random() * 25)
-  }
-
-  generateRandomRotation = () => {
-    return Math.floor(Math.random() * 3)
+  refreshGameBoard = () => {
+    const activeLetter = generateRandomActiveLetter()
+    this.setState({
+      activeLetter,
+      letterList: generateUniqueLetterArray(activeLetter),
+      colorList: generateUniqueBackgroundColorArray(),
+      rotation: generateRandomRotation(),
+      score: 0,
+      isModalVisible: false,
+    })
   }
 
   render() {
-
-    console.log(this.state, 'render')
-
     return (
-    <View style={styles.rotatingLettersContainer}>
+      <View style={styles.rotatingLettersContainer}>
 
         <Modal
           animationIn='slideInUp'
-          animationOut='slideOutRight'
+          animationOut='slideOutUp'
           isVisible={this.state.isModalVisible}
           style={styles.modal}
-          onBackdropPress={() => this.setModalVisible(false)}
-          onBackButtonPress={() => this.setModalVisible(false)}
-          >
+          onBackdropPress={this.refreshGameBoard}
+          onBackButtonPress={this.refreshGameBoard}
+        >
           <View style={styles.modalBackground}>
-            <Text>Hello world!</Text>
+            <Text>{this.state.correctAnswer ? 'Good job, you selected the right answer!' : 'Better luck next time bucko'}</Text>
           </View>
         </Modal>
 
-      <View style={[styles.rotatingLetterBox, {
-        transform: [{
-          rotate: rotations[this.state.rotation]
-        }], 
-      }]}>
-        <Text style={styles.rotateLetterMain}>{letters[this.state.activeLetter]}</Text>
+        <View style={[styles.rotatingLetterBox, {
+          transform: [{
+            rotate: rotations[this.state.rotation]
+          }], 
+        }]}>
+          <Text style={styles.rotateLetterMain}>{letters[this.state.activeLetter]}</Text>
+        </View>
+        <View style={styles.letterRow}>{this.state.letterList.map((num, i) => {
+
+
+          return (
+            <TouchableOpacity onPress={() => {
+              if (num === this.state.activeLetter){
+                console.log(num, this.state.activeLetter)
+                this.gotAnswerCorrect()
+              } else {
+                this.gotAnswerWrong()
+              }
+            }} key={i}>
+              <View  style={[styles.letterBtn, {backgroundColor: colors[this.state.colorList[i]]}]}>
+                <Text style={styles.gameLetter}>{letters[num]}</Text>
+              </View>
+            </TouchableOpacity>
+          )
+        })}</View>
       </View>
-      <View style={styles.letterRow}>{this.state.letterList.map((num, i) => {
-
-
-        return (
-          <TouchableOpacity onPress={() => {
-            if (num === this.state.activeLetter){
-              console.log('success')
-              this.setModalVisible(true)
-            } else {
-              console.log(`You pickes ${letters[num]} but the correct answer was ${letters[this.state.activeLetter]}`)
-            }
-          }} key={i}>
-            <View  style={[styles.letterBtn, {backgroundColor: colors[this.state.colorList[i]]}]}>
-              <Text style={styles.gameLetter}>{letters[num]}</Text>
-            </View>
-          </TouchableOpacity>
-        )
-      })}</View>
-    </View>)
+    )
   }
 }
