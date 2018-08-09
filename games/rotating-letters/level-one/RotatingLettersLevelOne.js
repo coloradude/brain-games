@@ -119,7 +119,8 @@ export default class RotatingLettersLevelOne extends React.Component {
             const params = {
               gameName: 'RotatingLettersLevelOne',
               score: this.state.score,
-              numberOfMovesPerGame
+              numberOfMovesPerGame,
+              restartGame: this.restartGame
             }
             this.props.navigation.navigate('EndGameScreen', params)
           }}

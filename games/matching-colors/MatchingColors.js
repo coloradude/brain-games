@@ -112,6 +112,17 @@ export default class MatchingColors extends React.Component{
     })
   }
 
+  restartGame = () => {
+    const activeColor = generateRandomColorIndex()
+    this.setState({
+      isModalVisible: false,
+      score: 0,
+      activeColor,
+      colorList: generateUniqueColorArray(activeColor),
+      timesPlayed: 0
+    })
+  }
+
   endGame = () => {
     this.setState({
       endGame: true,
@@ -138,6 +149,7 @@ export default class MatchingColors extends React.Component{
               gameName: 'MatchingColors', 
               score: this.state.score,
               numberOfMovesPerGame,
+              restartGame: this.restartGame
             }
             this.props.navigation.navigate('EndGameScreen', params)
           }}
