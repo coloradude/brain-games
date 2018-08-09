@@ -40,7 +40,7 @@ export default class RotatingLettersLevelOne extends React.Component {
       letterList: generateUniqueLetterArray(activeLetter),
       colorList: generateUniqueBackgroundColorArray(),
       rotation: generateRandomRotation(),
-      score: this.props.navigation0,
+      score: 0,
       timesPlayed: 0,
       numberOfMovesPerGame,
       isModalVisible: false,
