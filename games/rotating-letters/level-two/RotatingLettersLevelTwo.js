@@ -12,12 +12,10 @@ import {
   generateUniqueBackgroundColorArray
 } from '../utilities'
 
-import {
-  letters,
-  rotations,
-  colors,
-  numberOfMovesPerGame
-} from './staticVariables'
+const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+const rotations = ['90deg', '180deg', '270deg']
+const colors = ['#90caf9', '#80cbc4', '#b39ddb', '#ffcdd2', '#c8e6c9', '#ffccbc', '#fff9c4']
+const numberOfMovesPerGame = 3
 
 import { 
   AnswerModal
@@ -116,6 +114,7 @@ export default class RotatingLettersLevelOne extends React.Component {
           correctAnswer={this.state.correctAnswer}
           timesPlayed={this.state.timesPlayed}
           refreshGameBoard={this.refreshGameBoard}
+          numberOfMovesPerGame={numberOfMovesPerGame}
           endGame={() => {
             this.setModalVisible(false)
             this.props.navigation.navigate('EndGameScreen', {...this.state})

@@ -11,10 +11,8 @@ import {
   timesCircle
 } from '../../svg/icons'
 
-
 import Modal from 'react-native-modal'
 import styles from './RotatingLettersStyles'
-import { numberOfMovesPerGame } from './level-one/staticVariables'
 
 const SvgGenerator = params => (
   <Svg width='90' height='90' viewBox={params.viewBox}>
@@ -31,7 +29,8 @@ export const AnswerModal = ({
   refreshGameBoard,
   correctAnswer,
   endGame,
-  timesPlayed
+  timesPlayed,
+  numberOfMovesPerGame
 }) => {
   return (
     <Modal

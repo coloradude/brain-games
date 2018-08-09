@@ -15,7 +15,6 @@ import styles from './MatchingColorsStyles'
 
 import { AnswerModal } from '../rotating-letters/components'
 
-const numberOfMovesPerGame = 3
 const colors = [{
   color: '#f44336',
   name: 'Red'
@@ -44,6 +43,8 @@ const colors = [{
   color: '#000000', 
   name: 'Black'
 },]
+
+const numberOfMovesPerGame = 3
 
 const generateUniqueColorArray = activeColor => {
   const colors = []
@@ -76,7 +77,8 @@ export default class MatchingColors extends React.Component{
       numberOfMovesPerGame,
       timesPlayed: 0,
       activeColor: randomColorIndex,
-      colorList: generateUniqueColorArray(randomColorIndex)
+      colorList: generateUniqueColorArray(randomColorIndex),
+      endGame: false
     }
   }
 
@@ -110,6 +112,13 @@ export default class MatchingColors extends React.Component{
     })
   }
 
+  endGame = () => {
+    this.setState({
+      endGame: true,
+      isModalVisible: false,
+    })
+  }
+
   render() {
 
     return (
@@ -122,9 +131,15 @@ export default class MatchingColors extends React.Component{
           correctAnswer={this.state.correctAnswer}
           timesPlayed={this.state.timesPlayed}
           refreshGameBoard={this.refreshGameBoard}
+          numberOfMovesPerGame={numberOfMovesPerGame}
           endGame={() => {
             this.setModalVisible(false)
-            this.props.navigation.navigate('EndGameScreen', {...this.state})
+            const params = {
+              gameName: 'MatchingColors', 
+              score: this.state.score,
+              numberOfMovesPerGame,
+            }
+            this.props.navigation.navigate('EndGameScreen', params)
           }}
         />
 
