@@ -135,7 +135,7 @@ export default class MatchingColors extends React.Component{
     return (
       <View style={styles.matchingColorsContainer}>
 
-        <Text>{`Score: ${this.state.score}/${numberOfMovesPerGame}`}</Text>
+        <Text style={styles.scoreboard}>{`Score: ${this.state.score}/${numberOfMovesPerGame}`}</Text>
 
         <AnswerModal 
           isModalVisible={this.state.isModalVisible} 

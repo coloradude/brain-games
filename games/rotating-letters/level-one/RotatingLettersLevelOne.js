@@ -114,13 +114,15 @@ export default class RotatingLettersLevelOne extends React.Component {
           correctAnswer={this.state.correctAnswer}
           timesPlayed={this.state.timesPlayed}
           refreshGameBoard={this.refreshGameBoard}
+          numberOfMovesPerGame={numberOfMovesPerGame}
           endGame={() => {
             this.setModalVisible(false)
             const params = {
               gameName: 'RotatingLettersLevelOne',
               score: this.state.score,
               numberOfMovesPerGame,
-              restartGame: this.restartGame
+              restartGame: this.restartGame,
+              timesPlayed: this.state.timesPlayed
             }
             this.props.navigation.navigate('EndGameScreen', params)
           }}

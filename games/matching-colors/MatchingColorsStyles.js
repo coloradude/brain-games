@@ -25,5 +25,9 @@ export default StyleSheet.create({
   gridView: {
     paddingTop: 25,
     flex: 1,
+  },
+  scoreboard: {
+    fontSize: 25,
+    fontWeight: 'bold'
   }
 })
