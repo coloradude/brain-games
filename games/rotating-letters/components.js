@@ -14,7 +14,7 @@ import {
 
 import Modal from 'react-native-modal'
 import styles from './RotatingLettersStyles'
-import { numberOfMovesPerGame } from './staticVariables'
+import { numberOfMovesPerGame } from './level-one/staticVariables'
 
 const SvgGenerator = params => (
   <Svg width='90' height='90' viewBox={params.viewBox}>

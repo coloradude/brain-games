@@ -3,7 +3,6 @@ import {
   Text, 
   View , 
   TouchableOpacity,
-  StyleSheet
 } from 'react-native'
 
 import Svg, { Path } from 'react-native-svg'
@@ -34,7 +33,7 @@ export default class GameGrid extends React.Component {
       code: '#80cbc4',
       transform: 'rotate(-90 224.00000000000003,256)',
       instructions: 'Choose the letter on the bottom of the screen that matches the large rotated letter in the center of the screen.',
-      game: 'RotatingLetters'
+      game: 'RotatingLettersLevelOne'
     },{
       viewBox: '0 0 512 512',
       fill: 'white',
@@ -43,8 +42,8 @@ export default class GameGrid extends React.Component {
       gameName: 'Matching Colors',
       code: '#90caf9',
       transform: '',
-      instructions: 'Choose the letter on the bottom of the screen that matches the large rotated letter in the center of the screen.',
-      game: 'RotatingLetters'
+      instructions: 'Match the color of the shape to the correct spelling of that color below',
+      game: 'MatchingColors'
     },{
       viewBox: '0 0 448 512',
       fill: '#b39ddb',

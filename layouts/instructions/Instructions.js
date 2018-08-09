@@ -48,6 +48,7 @@ export default class Instructions extends React.Component {
 
     return (
       <View style={styles.container}>
+        <Button title='Speak' onPress={() => Tts.speak('')}/>
         <View style={styles.iconContainer}>
           <Svg
             width='90'

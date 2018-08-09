@@ -6,14 +6,16 @@ import HomeScreen from './layouts/home-screen/HomeScreen'
 import GameGrid from './layouts/game-grid/GameGrid'
 import Instructions from './layouts/instructions/Instructions'
 import EndGameScreen from './layouts/end-game-screen/EndGameScreen'
-import RotatingLetters from './games/rotating-letters/RotatingLetters'
+import RotatingLettersLevelOne from './games/rotating-letters/level-one/RotatingLettersLevelOne'
+import MatchingColors from './games/matching-colors/MatchingColors'
 
 const RootStack = createStackNavigator({
   HomeScreen,
   GameGrid,
   Instructions,
   EndGameScreen,
-  RotatingLetters
+  RotatingLettersLevelOne,
+  MatchingColors
 }, {
   initialRouteName: 'HomeScreen',
   headerMode: 'screen',

@@ -51,14 +51,14 @@ export default class EndGameScreen extends React.Component {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          // onPress={}
+          onPress={() => this.props.navigation.navigate('RotatingLettersLevelOne', {newGame: true})}
         >
           <View style={styles.endGameButton}>
             <Text style={styles.endGameButtonText}>Play Again</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          // onPress={}
+          onPress={() => this.props.navigation.navigate('GameGrid')}
         >
           <View style={styles.endGameButton}>
             <Text style={styles.endGameButtonText}>Back To Game Menu</Text>
