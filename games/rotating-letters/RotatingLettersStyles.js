@@ -55,5 +55,9 @@ export default StyleSheet.create({
   },
   nextButtonText: {
     fontSize: 25
+  },
+  scoreboard: {
+    fontSize: 25,
+    fontWeight: 'bold'
   }
 })

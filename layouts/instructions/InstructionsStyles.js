@@ -20,4 +20,16 @@ export default StyleSheet.create({
     fontSize: 35,
     fontWeight: 'bold'
   },
+  startGameButton: {
+    width: 250,
+    height: 75,
+    backgroundColor: '#a5d6a7',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    borderRadius: 5,
+    flexDirection: 'row'
+  },
+  startGameText: {
+    fontSize: 40
+  }
 })

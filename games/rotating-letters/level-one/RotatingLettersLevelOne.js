@@ -97,17 +97,22 @@ export default class RotatingLettersLevelOne extends React.Component {
   }
 
   endGame = () => {
-    this.setState({
-      endGame: true,
-      isModalVisible: false,
-    })
+    this.setModalVisible(false)
+    const params = {
+      gameName: 'RotatingLettersLevelOne',
+      score: this.state.score,
+      numberOfMovesPerGame,
+      restartGame: this.restartGame,
+      timesPlayed: this.state.timesPlayed
+    }
+    this.props.navigation.navigate('EndGameScreen', params)
   }
 
   render() {
     return (
       <View style={styles.rotatingLettersContainer}>
 
-        <Text>{`Score: ${this.state.score}/${numberOfMovesPerGame}`}</Text>
+        <Text style={styles.scoreboard}>{`Score: ${this.state.score}/${numberOfMovesPerGame}`}</Text>
 
         <AnswerModal 
           isModalVisible={this.state.isModalVisible} 
@@ -115,17 +120,7 @@ export default class RotatingLettersLevelOne extends React.Component {
           timesPlayed={this.state.timesPlayed}
           refreshGameBoard={this.refreshGameBoard}
           numberOfMovesPerGame={numberOfMovesPerGame}
-          endGame={() => {
-            this.setModalVisible(false)
-            const params = {
-              gameName: 'RotatingLettersLevelOne',
-              score: this.state.score,
-              numberOfMovesPerGame,
-              restartGame: this.restartGame,
-              timesPlayed: this.state.timesPlayed
-            }
-            this.props.navigation.navigate('EndGameScreen', params)
-          }}
+          endGame={this.endGame}
         />
 
         <View style={[styles.rotatingLetterBox, {
