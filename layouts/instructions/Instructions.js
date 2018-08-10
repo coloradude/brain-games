@@ -2,10 +2,12 @@ import React from 'react'
 import { 
   Text, 
   View , 
-  Button,
+  //Button,
   TouchableOpacity,
   StyleSheet
 } from 'react-native'
+
+import { Button } from 'react-native-paper'
 
 import Tts from 'react-native-tts'
 
@@ -20,13 +22,21 @@ export default class Instructions extends React.Component {
   //   title: this.props.navigation.state.params.gameName
   // }
 
+  constructor(props){
+    super(props)
+    this.state = {
+      visible: true
+    }
+  }
+
   render () {
 
     const navParams = this.props.navigation.state.params
 
     return (
       <View style={styles.container}>
-        <Button title='Speak' onPress={() => Tts.speak('')}/>
+
+        <Button onPress={() => Tts.speak('')}>Hola</Button>
         <View style={styles.iconContainer}>
           <Svg
             width='90'

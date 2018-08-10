@@ -2,6 +2,8 @@ import React from 'react'
 
 import { createStackNavigator } from 'react-navigation'
 
+import { Provider as PaperProvider } from 'react-native-paper';
+
 import HomeScreen from './layouts/home-screen/HomeScreen'
 import GameGrid from './layouts/game-grid/GameGrid'
 import Instructions from './layouts/instructions/Instructions'
@@ -23,6 +25,10 @@ const RootStack = createStackNavigator({
 
 export default class App extends React.Component {
   render() {
-    return <RootStack />
+    return (
+      <PaperProvider>
+        <RootStack />
+      </PaperProvider>
+    )
   }
 }

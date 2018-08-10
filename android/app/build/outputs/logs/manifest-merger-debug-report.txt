@@ -67,6 +67,7 @@ ADDED from /Users/stephenflorian/workspace/brain-games/android/app/src/main/Andr
 		ADDED from /Users/stephenflorian/workspace/brain-games/android/app/src/main/AndroidManifest.xml:23:17-81
 uses-sdk
 INJECTED from /Users/stephenflorian/workspace/brain-games/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [braininjury:react-native-vector-icons:unspecified] /Users/stephenflorian/workspace/brain-games/android/app/build/intermediates/exploded-aar/braininjury/react-native-vector-icons/unspecified/AndroidManifest.xml:7:5-9:41
 MERGED from [braininjury:react-native-tts:unspecified] /Users/stephenflorian/workspace/brain-games/android/app/build/intermediates/exploded-aar/braininjury/react-native-tts/unspecified/AndroidManifest.xml:7:5-9:41
 MERGED from [braininjury:react-native-svg:unspecified] /Users/stephenflorian/workspace/brain-games/android/app/build/intermediates/exploded-aar/braininjury/react-native-svg/unspecified/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:react-native:0.55.4] /Users/stephenflorian/workspace/brain-games/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/AndroidManifest.xml:7:5-9:41
